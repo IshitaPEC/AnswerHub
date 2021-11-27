@@ -37,6 +37,8 @@ class StudentInfo(models.Model):
     contactNumber = models.CharField(validators=[DefaultUser.phoneNumberRegex], max_length=16, unique=True)
     emailId = models.EmailField(max_length=254)
 
+    def __str__(self) -> str:
+        return self.user.username + self.contactNumber
 
 # Question Details
 class Question(models.Model):
@@ -44,6 +46,9 @@ class Question(models.Model):
     questionTitle = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     questionText = models.CharField(max_length=1000)
+
+    def __str__(self) -> str:
+        return self.student.user.username + self.subject + self.questionTitle
 
     def get_absolute_url(self):
         return reverse('question', kwargs={'pk': self.pk})
@@ -66,3 +71,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, default=get_default_question, on_delete=models.CASCADE)
     teacher = models.ForeignKey(TeacherInfo, default=get_default_teacher, on_delete=models.CASCADE)
     answerText = models.CharField(max_length=1000)
+
+    def __str__(self) -> str:
+        return self.teacher.user.username + self.teacher.subject + self.question.questionTitle
