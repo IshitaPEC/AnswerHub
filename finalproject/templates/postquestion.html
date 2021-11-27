@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="static/css/register.css">
+  </head>
+  <body>
+    <!--After Posting, message should display -->
+    {% if details %}
+    <h5 class="mainBlock" style="padding: 15px 15px; text-align: center;">Thank you for asking your question</h5>
+    {% else %}
+    
+    <div class="mainBlock" style=" background-image: url('static/images/bg.jpg');">
+      <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <!--Allowing users to choose from a set of subjects -->
+      <div class="container" >
+        <label for="subject"><b>SUBJECT</b></label>
+        <select id="subject" name="subject">
+          <option value="Operating System">Operating System</option>
+          <option value="DBMS">DBMS</option>
+          <option value="Computer Networks">Computer Networks</option>
+          <option value="OOPS">OOPS</option>
+          <option value="Cloud Computing">Cloud Computing</option>
+          <option value="Applied Cryptography">Applied Cryptography</option>
+        </select> <hr>
+
+        <!--Taking input of other Question Details-->
+        <label for="questionTitle"><b>Title</b></label>
+        <input type="text" placeholder="Enter Title" name="questionTitle" id="questionTitle" required>
+        <hr>  
+
+        <label for="questionText"><b>Description</b></label><br>
+        <textarea id="questionText" name="questionText" placeholder="Write Question Details.."></textarea>
+        <hr>
+
+        <button type="submit" name="button" class="button">Submit your Question</button>
+      </div>
+    </form>
+
+  {% endif %}
+  </div>
+  <hr/>
+  <h2 > <a href="{% url 'studentportal' %}" class="button">Go Back to Questions</a></h2>
+  </body>
+</html>

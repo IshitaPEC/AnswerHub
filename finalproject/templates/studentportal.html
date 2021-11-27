@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Questions</title>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="static/css/questions.css">
+
+        <!-- Adding Style to Buttons -->
+        <style>
+            .button {
+                background-color:#0096FF;
+                border: none;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .text{
+                font-family: "Open Sans", sans-serif;
+                color: #111111;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-div d-flex flex-column" style="height:250px">
+                            <h3 class="font-weight-bold">Questions Asked</h3> <span class="d-block text-center px-3">Find answers for Questions that you have asked previously<br> </span>
+                        </div>
+                        <div class="card-div-2">
+                            <div class="px-1">
+                                <div class="px-1 mb-2"><a href="{% url 'postquestion' %}" class="button" style="padding: 15px 32px; font-size: 16px">Have a question? Ask Now</a></div>
+                            </div>
+                          <!-- Print the list of Questions that have been asked by the students till now -->
+                            {% for question in studentQuestions %}
+                            <div class="px-1 mb-2">
+                                <div class="box d-flex justify-content-between align-items-center">
+                                    <div class="text"> 
+                                        <h5 class="element">{{question.subject}}</h5>
+                                        <h5 class="card-title">{{question.questionTitle}}</h5>
+                                        <p class="card-text">{{question.questionText}}</p>
+                                        <br>
+                                        <!-- View Answers of the Questions Asked So Far by clicking on the button below -->
+                                        <a  class="button" style="padding: 15px 15px; font-size: 14px" href =" {{question.get_absolute_url}}viewdetail">Answers</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

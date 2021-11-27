@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="static/css/register.css">
+    <style>
+      
+
+      /* Full-width input fields */
+      input[type=text], input[type=password], input[type=tel], input[type=email]{
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+
+      input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+      
+    </style>
+  </head>
+
+  <body>
+    <div class="mainBlock" style=" background-image: url('static/images/bg.jpg');">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+          <h1>Student Registeration</h1>
+          <p>Please fill in this form to create an account.</p>
+          <hr>
+
+          <label for="Username"><b>User Name</b></label>
+          {{user_form.username}}
+          <hr>
+
+          <label for="Password"><b>Password</b></label>
+          {{user_form.password}}
+          <hr>
+
+          <label for="contactNumber"><b>Contact Number</b></label>
+          <input type="tel" placeholder="Contact Number" name="contactNumber" id="contactNumber" pattern="\d{5}([- ]*)\d{6}">
+          <hr>
+
+          <label for="emailId"><b>Email</b></label>
+          <input type="email" placeholder="Enter Email" name="emailId" id="email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" size="30" required>
+          <hr>
+         
+          <button type="submit" name="button" class="button">REGISTER</button>
+        </div>
+        
+
+      </form>
+    </div>
+
+  </body>
+</html>
+
+
+
